@@ -51,10 +51,10 @@
             this.groupBox_m3u8 = new System.Windows.Forms.GroupBox();
             this.button_m3u8 = new System.Windows.Forms.Button();
             this.textbox_m3u8 = new System.Windows.Forms.TextBox();
-            this.label_m3u8 = new System.Windows.Forms.Label();
-            this.groupBox_videoFile = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label_m3u8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox_videoFile = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_trimEndSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_trimEndMinuets)).BeginInit();
@@ -332,39 +332,6 @@
             this.textbox_m3u8.TabIndex = 9;
             this.textbox_m3u8.Text = "Http://...../index.m3u8";
             // 
-            // label_m3u8
-            // 
-            this.label_m3u8.AutoSize = true;
-            this.label_m3u8.Location = new System.Drawing.Point(6, 30);
-            this.label_m3u8.Name = "label_m3u8";
-            this.label_m3u8.Size = new System.Drawing.Size(106, 13);
-            this.label_m3u8.TabIndex = 9;
-            this.label_m3u8.Text = "Web link to m3u8 file";
-            // 
-            // groupBox_videoFile
-            // 
-            this.groupBox_videoFile.Controls.Add(this.button2);
-            this.groupBox_videoFile.Controls.Add(this.groupBox2);
-            this.groupBox_videoFile.Controls.Add(this.comboBox1);
-            this.groupBox_videoFile.Controls.Add(this.button1);
-            this.groupBox_videoFile.Controls.Add(this.textBox_URI);
-            this.groupBox_videoFile.Controls.Add(this.label4);
-            this.groupBox_videoFile.Location = new System.Drawing.Point(12, 55);
-            this.groupBox_videoFile.Name = "groupBox_videoFile";
-            this.groupBox_videoFile.Size = new System.Drawing.Size(344, 273);
-            this.groupBox_videoFile.TabIndex = 0;
-            this.groupBox_videoFile.TabStop = false;
-            this.groupBox_videoFile.Text = "Video Format Converter";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Convert to";
-            // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
@@ -392,6 +359,39 @@
             this.comboBox2.Size = new System.Drawing.Size(122, 21);
             this.comboBox2.TabIndex = 1;
             this.comboBox2.Text = "mp4";
+            // 
+            // label_m3u8
+            // 
+            this.label_m3u8.AutoSize = true;
+            this.label_m3u8.Location = new System.Drawing.Point(6, 30);
+            this.label_m3u8.Name = "label_m3u8";
+            this.label_m3u8.Size = new System.Drawing.Size(106, 13);
+            this.label_m3u8.TabIndex = 9;
+            this.label_m3u8.Text = "Web link to m3u8 file";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Convert to";
+            // 
+            // groupBox_videoFile
+            // 
+            this.groupBox_videoFile.Controls.Add(this.button2);
+            this.groupBox_videoFile.Controls.Add(this.groupBox2);
+            this.groupBox_videoFile.Controls.Add(this.comboBox1);
+            this.groupBox_videoFile.Controls.Add(this.button1);
+            this.groupBox_videoFile.Controls.Add(this.textBox_URI);
+            this.groupBox_videoFile.Controls.Add(this.label4);
+            this.groupBox_videoFile.Location = new System.Drawing.Point(12, 55);
+            this.groupBox_videoFile.Name = "groupBox_videoFile";
+            this.groupBox_videoFile.Size = new System.Drawing.Size(344, 273);
+            this.groupBox_videoFile.TabIndex = 0;
+            this.groupBox_videoFile.TabStop = false;
+            this.groupBox_videoFile.Text = "Video Format Converter";
             // 
             // Form1
             // 

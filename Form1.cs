@@ -51,24 +51,17 @@ namespace FFMPEGUI
             string t = " -to ";
             string full_Trim_String;
 
-            if (string.IsNullOrEmpty(trimStart))
+            if (string.IsNullOrEmpty(trimStart) || string.IsNullOrEmpty(trimEnd))
             {
-                ss = "";
-                trimStart = "";
-
+                full_Trim_String = "";
             }
-            if (string.IsNullOrEmpty(trimEnd) || trimEnd == "00:00:00")
+            if (trimEnd == "00:00:00")
             {
                 t = "";
                 trimEnd = "";
             }
-            //if(string.IsNullOrEmpty(trimStart)&& string.IsNullOrEmpty(trimEnd))
-            //{
-            //    full_Trim_String = "";
-            //}
 
             full_Trim_String = $"{ss}{trimStart}{t}{trimEnd}";
-
 
             if (outputFolder == null || outputFolder.Length == 0)
             {
@@ -76,7 +69,7 @@ namespace FFMPEGUI
             }
             string final = $"-i {sourceFile} {full_Trim_String} -c copy {outputFolder}\\output.{outputFormat}";
 
-            MessageBox.Show(final);
+            // MessageBox.Show(final);
 
             ProcessStart.StartExternalProcess(pathToProcess, final);
         }
