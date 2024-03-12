@@ -48,28 +48,38 @@ namespace FFMPEGUI
         static void RunVideoConvertion(string sourceFile, string outputFormat, string trimStart, string trimEnd, string outputFolder)
         {
             string ss = "-ss ";
-            string t = " -to ";
+            string to = " -to ";
             string full_Trim_String;
 
             if (string.IsNullOrEmpty(trimStart) || string.IsNullOrEmpty(trimEnd))
             {
-                full_Trim_String = "";
+                ss = string.Empty;
+                to = string.Empty;
+                trimStart = string.Empty;
+                trimEnd = string.Empty;
             }
+
             if (trimEnd == "00:00:00")
             {
-                t = "";
+                to = "";
                 trimEnd = "";
             }
 
-            full_Trim_String = $"{ss}{trimStart}{t}{trimEnd}";
+
+            full_Trim_String = $"{ss}{trimStart}{to}{trimEnd}";
+
+
 
             if (outputFolder == null || outputFolder.Length == 0)
             {
                 outputFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             }
+
+            //string allowAllProtocols = "-protocol_whitelist \"all\"";
+
             string final = $"-i {sourceFile} {full_Trim_String} -c copy {outputFolder}\\output.{outputFormat}";
 
-            // MessageBox.Show(final);
+            MessageBox.Show(final);
 
             ProcessStart.StartExternalProcess(pathToProcess, final);
         }
@@ -119,7 +129,7 @@ namespace FFMPEGUI
                 MessageBox.Show("Source's format has to be .m3u8");
                 return;
             }
-            RunVideoConvertion(m3u8link, comboBox2.SelectedItem.ToString(), "", "", null);
+            RunVideoConvertion(m3u8link, comboBox2.SelectedItem.ToString(), null, null, null);
 
             //working string debug
             //string test = $"-i https://cfvod.kaltura.com/hls/p/2717431/sp/271743100/serveFlavor/entryId/1_4a6kir7n/v/11/ev/12/flavorId/1_3dcarn1b/name/a.mp4/index.m3u8 -c copy {Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\.output.mp4";
