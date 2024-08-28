@@ -49,12 +49,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox_m3u8 = new System.Windows.Forms.GroupBox();
+            this.textBox_fileName = new System.Windows.Forms.TextBox();
             this.button_m3u8 = new System.Windows.Forms.Button();
             this.textbox_m3u8 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox_Format = new System.Windows.Forms.ComboBox();
             this.label_m3u8 = new System.Windows.Forms.Label();
+            this.label_fileName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_videoFile = new System.Windows.Forms.GroupBox();
+            this.label_status = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_trimEndSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_trimEndMinuets)).BeginInit();
@@ -90,25 +93,6 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "mp4",
-            "avi",
-            "flv",
-            "mkv",
-            "mov",
-            "wmv",
-            "mpeg",
-            "mpg",
-            "3gp",
-            "vob",
-            "ts",
-            "m2ts",
-            "ogg",
-            "asf",
-            "rm",
-            "swf",
-            "mxf",
-            "nut"});
             this.comboBox1.Location = new System.Drawing.Point(186, 45);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(122, 21);
@@ -302,10 +286,13 @@
             // 
             // groupBox_m3u8
             // 
+            this.groupBox_m3u8.Controls.Add(this.label_status);
+            this.groupBox_m3u8.Controls.Add(this.textBox_fileName);
             this.groupBox_m3u8.Controls.Add(this.button_m3u8);
             this.groupBox_m3u8.Controls.Add(this.textbox_m3u8);
-            this.groupBox_m3u8.Controls.Add(this.comboBox2);
+            this.groupBox_m3u8.Controls.Add(this.comboBox_Format);
             this.groupBox_m3u8.Controls.Add(this.label_m3u8);
+            this.groupBox_m3u8.Controls.Add(this.label_fileName);
             this.groupBox_m3u8.Controls.Add(this.label1);
             this.groupBox_m3u8.Location = new System.Drawing.Point(371, 55);
             this.groupBox_m3u8.Name = "groupBox_m3u8";
@@ -313,6 +300,14 @@
             this.groupBox_m3u8.TabIndex = 1;
             this.groupBox_m3u8.TabStop = false;
             this.groupBox_m3u8.Text = "m3u8 Fuser";
+            this.groupBox_m3u8.Enter += new System.EventHandler(this.groupBox_m3u8_Enter);
+            // 
+            // textBox_fileName
+            // 
+            this.textBox_fileName.Location = new System.Drawing.Point(134, 93);
+            this.textBox_fileName.Name = "textBox_fileName";
+            this.textBox_fileName.Size = new System.Drawing.Size(100, 20);
+            this.textBox_fileName.TabIndex = 11;
             // 
             // button_m3u8
             // 
@@ -332,10 +327,10 @@
             this.textbox_m3u8.TabIndex = 9;
             this.textbox_m3u8.Text = "Http://...../index.m3u8";
             // 
-            // comboBox2
+            // comboBox_Format
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBox_Format.FormattingEnabled = true;
+            this.comboBox_Format.Items.AddRange(new object[] {
             "mp4",
             "avi",
             "flv",
@@ -354,11 +349,11 @@
             "swf",
             "mxf",
             "nut"});
-            this.comboBox2.Location = new System.Drawing.Point(6, 93);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(122, 21);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.Text = "mp4";
+            this.comboBox_Format.Location = new System.Drawing.Point(6, 93);
+            this.comboBox_Format.Name = "comboBox_Format";
+            this.comboBox_Format.Size = new System.Drawing.Size(122, 21);
+            this.comboBox_Format.TabIndex = 1;
+            this.comboBox_Format.Text = "mp4";
             // 
             // label_m3u8
             // 
@@ -368,6 +363,15 @@
             this.label_m3u8.Size = new System.Drawing.Size(106, 13);
             this.label_m3u8.TabIndex = 9;
             this.label_m3u8.Text = "Web link to m3u8 file";
+            // 
+            // label_fileName
+            // 
+            this.label_fileName.AutoSize = true;
+            this.label_fileName.Location = new System.Drawing.Point(131, 76);
+            this.label_fileName.Name = "label_fileName";
+            this.label_fileName.Size = new System.Drawing.Size(52, 13);
+            this.label_fileName.TabIndex = 9;
+            this.label_fileName.Text = "File name";
             // 
             // label1
             // 
@@ -392,6 +396,17 @@
             this.groupBox_videoFile.TabIndex = 0;
             this.groupBox_videoFile.TabStop = false;
             this.groupBox_videoFile.Text = "Video Format Converter";
+            // 
+            // label_status
+            // 
+            this.label_status.AutoSize = true;
+            this.label_status.Font = new System.Drawing.Font("Miriam Fixed", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label_status.ForeColor = System.Drawing.Color.LimeGreen;
+            this.label_status.Location = new System.Drawing.Point(102, 198);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(114, 27);
+            this.label_status.TabIndex = 12;
+            this.label_status.Text = "status";
             // 
             // Form1
             // 
@@ -447,8 +462,11 @@
         private System.Windows.Forms.TextBox textbox_m3u8;
         private System.Windows.Forms.Label label_m3u8;
         private System.Windows.Forms.Button button_m3u8;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox_Format;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_fileName;
+        private System.Windows.Forms.Label label_fileName;
+        private System.Windows.Forms.Label label_status;
     }
 }
 

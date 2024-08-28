@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Threading;
+using System.Xml;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace FFMPEGUI
 {
@@ -29,6 +32,28 @@ namespace FFMPEGUI
                 (numericUpDown_trimEndMinuets, "Min"),
                 (numericUpDown_trimEndSeconds, "Sec")
                 );
+
+            SetComboBoxItemsVideo(comboBox1);
+            label_status.Text = "";
+        }
+        static void SetComboBoxItemsAudio(ComboBox comboBox)
+        {
+            SetComboBoxItems(comboBox, "MP3", "AAC", "WAV", "FLAC", "OGG", "OPUS", "M4A", "ALAC");
+
+        }
+        static void SetComboBoxItemsVideo(ComboBox comboBox)
+        {
+            SetComboBoxItems(comboBox, "mp4 ", "avi ", "flv ", "mkv ", "mov ", "wmv", "mpeg", "mpg", "3gp ", "vob ", "ts  ", "m2ts", "ogg ", "asf ", "rm  ", "swf ", "mxf ", "nut ");
+        }
+        static void SetComboBoxItems(ComboBox comboBox, params string[] Extentions)
+        {
+            if (comboBox == null || string.IsNullOrEmpty(comboBox.Text)) return;
+
+            comboBox.Items.Clear();
+            foreach (string str in Extentions)
+            {
+                comboBox.Items.Add(str);
+            }
         }
 
         static void SetToolTips(params (Control, string)[] ItemTooltipText)
@@ -45,7 +70,7 @@ namespace FFMPEGUI
             }
 
         }
-        static void RunVideoConvertion(string sourceFile, string outputFormat, string trimStart, string trimEnd, string outputFolder)
+        static void RunVideoConvertion(string sourceFile, string outputFormat, string fileName, string trimStart, string trimEnd, string outputFolder)
         {
             string ss = "-ss ";
             string to = " -to ";
@@ -57,6 +82,11 @@ namespace FFMPEGUI
                 to = string.Empty;
                 trimStart = string.Empty;
                 trimEnd = string.Empty;
+            }
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                fileName = "output";
             }
 
             if (trimEnd == "00:00:00")
@@ -77,9 +107,9 @@ namespace FFMPEGUI
 
             //string allowAllProtocols = "-protocol_whitelist \"all\"";
 
-            string final = $"-i {sourceFile} {full_Trim_String} -c copy {outputFolder}\\output.{outputFormat}";
+            string final = $"-i {sourceFile} {full_Trim_String} -c copy {outputFolder}\\{fileName}.{outputFormat}";
 
-            MessageBox.Show(final);
+            //MessageBox.Show(final);
 
             ProcessStart.StartExternalProcess(pathToProcess, final);
         }
@@ -115,7 +145,7 @@ namespace FFMPEGUI
 
             }
 
-            RunVideoConvertion(textBox_URI.Text, comboBox1.SelectedItem.ToString(), trimStart, trimEnd, null);
+            RunVideoConvertion(textBox_URI.Text, comboBox1.SelectedItem.ToString(), null, trimStart, trimEnd, null);
         }
 
         private void button_m3u8_Click(object sender, EventArgs e)
@@ -124,12 +154,28 @@ namespace FFMPEGUI
             m3u8link = m3u8link.Trim();
             textbox_m3u8.Text = m3u8link;
 
+            string fileName = textBox_fileName.Text;
+
             if (!m3u8link.EndsWith(".m3u8"))
             {
                 MessageBox.Show("Source's format has to be .m3u8");
                 return;
             }
-            RunVideoConvertion(m3u8link, comboBox2.SelectedItem.ToString(), null, null, null);
+
+            Thread thread = new Thread(() =>
+            {
+                RunVideoConvertion(m3u8link, comboBox_Format.SelectedItem.ToString(), fileName, null, null, null);
+
+            });
+            thread.Start();
+
+            //MessageBox.Show("Working...");
+
+            label_status.Text = "Working...";
+            thread.Join();
+            label_status.Text = "Done!";
+
+
 
             //working string debug
             //string test = $"-i https://cfvod.kaltura.com/hls/p/2717431/sp/271743100/serveFlavor/entryId/1_4a6kir7n/v/11/ev/12/flavorId/1_3dcarn1b/name/a.mp4/index.m3u8 -c copy {Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\.output.mp4";
@@ -138,6 +184,9 @@ namespace FFMPEGUI
 
         }
 
+        private void groupBox_m3u8_Enter(object sender, EventArgs e)
+        {
 
+        }
     }
 }
